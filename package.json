@@ -1,5 +1,5 @@
 {
-  "name": "@telnyx/openclaw-provider",
+  "name": "@team-telnyx/openclaw-provider",
   "version": "0.1.0",
   "description": "Official Telnyx AI inference provider plugin for OpenClaw.",
   "license": "MIT",
@@ -34,7 +34,7 @@
       "./dist/index.js"
     ],
     "install": {
-      "npmSpec": "@telnyx/openclaw-provider",
+      "npmSpec": "@team-telnyx/openclaw-provider",
       "defaultChoice": "npm",
       "minHostVersion": ">=2026.7.2-beta.7"
     },
