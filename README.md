@@ -5,7 +5,7 @@ Official Telnyx-maintained AI inference provider plugin for OpenClaw. It connect
 ## Install
 
 ```bash
-openclaw plugins install @team-telnyx/openclaw-provider
+openclaw plugins install @telnyx/openclaw-provider
 openclaw gateway restart
 ```
 
