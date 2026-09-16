@@ -4,6 +4,8 @@ Official Telnyx-maintained AI inference provider plugin for OpenClaw. It connect
 
 ## Install
 
+Requires OpenClaw `2026.8.1` or newer. Older hosts cannot load this package; run `openclaw update` first.
+
 ```bash
 openclaw plugins install @telnyx/openclaw-provider
 openclaw gateway restart

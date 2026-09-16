@@ -1,6 +1,6 @@
 {
   "name": "@telnyx/openclaw-provider",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Official Telnyx AI inference provider plugin for OpenClaw.",
   "license": "MIT",
   "type": "module",
@@ -20,11 +20,11 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "openclaw": ">=2026.7.2-beta.7"
+    "openclaw": ">=2026.8.1"
   },
   "devDependencies": {
     "@types/node": "26.1.2",
-    "openclaw": "2026.7.2-beta.7",
+    "openclaw": "2026.9.4",
     "typebox": "1.3.8",
     "typescript": "6.0.3",
     "vitest": "4.1.10"
@@ -36,13 +36,13 @@
     "install": {
       "npmSpec": "@telnyx/openclaw-provider",
       "defaultChoice": "npm",
-      "minHostVersion": ">=2026.7.2-beta.7"
+      "minHostVersion": ">=2026.8.1"
     },
     "compat": {
-      "pluginApi": ">=2026.7.2-beta.7"
+      "pluginApi": ">=2026.8.1"
     },
     "build": {
-      "openclawVersion": "2026.7.2-beta.7"
+      "openclawVersion": "2026.9.4"
     }
   }
 }

@@ -3,7 +3,7 @@ import type { ProviderRuntimeModel } from "openclaw/plugin-sdk/plugin-entry";
  * Telnyx model catalog, compat metadata, and live row projection.
  */
 import {
-  buildManifestModelDefinition,
+  buildManifestModelProviderConfig,
   readManifestProviderDefaultModelRef,
 } from "openclaw/plugin-sdk/provider-catalog-shared";
 import type {
@@ -37,18 +37,17 @@ export const TELNYX_MODEL_CATALOG = TELNYX_MANIFEST_CATALOG.models;
 
 /** Builds the network-free fallback catalog. */
 export function buildStaticTelnyxModels(): ModelDefinitionConfig[] {
-  return TELNYX_MODEL_CATALOG.map(
-    buildManifestModelDefinition({
-      providerId: "telnyx",
-      catalog: TELNYX_MANIFEST_CATALOG,
-      decorate: (normalized) => ({
-        ...normalized,
-        // Manifest rows carry per-model compat (e.g. codeMode tiers for shared
-        // upstream models); keep it layered over the provider-wide transport policy.
-        compat: { ...TELNYX_MODEL_COMPAT, ...normalized.compat },
-      }),
-    }),
-  );
+  // The SDK normalizes the manifest block as one batch (openclaw >= 2026.8.1);
+  // decorate the owned rows afterwards so the per-row compat layering stays local.
+  return buildManifestModelProviderConfig({
+    providerId: "telnyx",
+    catalog: TELNYX_MANIFEST_CATALOG,
+  }).models.map((normalized) => ({
+    ...normalized,
+    // Manifest rows carry per-model compat (e.g. codeMode tiers for shared
+    // upstream models); keep it layered over the provider-wide transport policy.
+    compat: { ...TELNYX_MODEL_COMPAT, ...normalized.compat },
+  }));
 }
 
 type TelnyxLiveModelRow = {

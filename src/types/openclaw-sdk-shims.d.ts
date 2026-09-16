@@ -31,9 +31,7 @@ declare module "openclaw/plugin-sdk/provider-model-shared" {
 
 declare module "openclaw/plugin-sdk/provider-catalog-shared" {
   import type { OpenClawConfig } from "openclaw/plugin-sdk/plugin-entry";
-  import type {
-    ModelDefinitionConfig,
-  } from "openclaw/plugin-sdk/provider-model-shared";
+  import type { ModelProviderConfig } from "openclaw/plugin-sdk/provider-model-shared";
 
   export type ConfiguredProviderCatalogEntry = {
     id: string;
@@ -44,11 +42,11 @@ declare module "openclaw/plugin-sdk/provider-catalog-shared" {
     input?: Array<"text" | "image" | "audio" | "video" | "document">;
   };
 
-  export function buildManifestModelDefinition(params: {
+  /** Normalizes one manifest `modelCatalog.providers.<id>` block into runtime provider config (openclaw >= 2026.8.1). */
+  export function buildManifestModelProviderConfig(params: {
     providerId: string;
     catalog: unknown;
-    decorate?: (model: ModelDefinitionConfig) => ModelDefinitionConfig;
-  }): (model: unknown) => ModelDefinitionConfig;
+  }): ModelProviderConfig;
 
   export function readConfiguredProviderCatalogEntries(params: {
     config?: OpenClawConfig;
