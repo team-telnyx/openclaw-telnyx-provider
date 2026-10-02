@@ -105,7 +105,15 @@ declare module "openclaw/plugin-sdk/provider-entry" {
     description: string;
     manifest?: unknown;
     provider?: SingleProviderDefinition;
+    register?: (api: OpenClawPluginApi) => void;
   }): OpenClawPluginDefinition;
+}
+
+declare module "openclaw/plugin-sdk/provider-http" {
+  export function assertOkOrThrowProviderError(
+    response: Response,
+    label: string,
+  ): Promise<void>;
 }
 
 declare module "openclaw/plugin-sdk/provider-tools" {

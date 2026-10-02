@@ -1,10 +1,12 @@
-/** Telnyx provider plugin entrypoint. */
+// Telnyx provider plugin entrypoint.
 import { readConfiguredProviderCatalogEntries } from "openclaw/plugin-sdk/provider-catalog-shared";
 import { defineSingleProviderPluginEntry } from "openclaw/plugin-sdk/provider-entry";
 import { buildProviderReplayFamilyHooks } from "openclaw/plugin-sdk/provider-model-shared";
 import { buildProviderToolCompatFamilyHooks } from "openclaw/plugin-sdk/provider-tools";
 import type { OpenClawPluginDefinition } from "openclaw/plugin-sdk/plugin-entry";
 import manifest from "../openclaw.plugin.json" with { type: "json" };
+import { buildTelnyxRealtimeTranscriptionProvider } from "./realtime-transcription-provider.js";
+import { buildTelnyxSpeechProvider } from "./speech-provider.js";
 import { projectTelnyxLiveModels, resolveTelnyxDynamicModel } from "./models.js";
 import { applyTelnyxConfig } from "./onboard.js";
 import { buildStaticTelnyxProvider } from "./provider-catalog.js";
@@ -17,6 +19,10 @@ const telnyxPlugin: OpenClawPluginDefinition = defineSingleProviderPluginEntry({
   name: "Telnyx Provider",
   description: "Official Telnyx AI inference provider plugin",
   manifest,
+  register: (api) => {
+    api.registerSpeechProvider(buildTelnyxSpeechProvider);
+    api.registerRealtimeTranscriptionProvider(buildTelnyxRealtimeTranscriptionProvider);
+  },
   provider: {
     label: "Telnyx",
     docsPath: "/providers/telnyx",

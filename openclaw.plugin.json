@@ -7,6 +7,7 @@
   },
   "enabledByDefault": true,
   "providers": ["telnyx"],
+  "capabilityCatalogEntry": "./dist/capability-catalog.js",
   "providerRequest": {
     "providers": {
       "telnyx": {

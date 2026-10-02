@@ -1,6 +1,6 @@
 {
   "name": "@telnyx/openclaw-provider",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Official Telnyx AI inference provider plugin for OpenClaw.",
   "license": "MIT",
   "type": "module",
@@ -15,8 +15,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "vitest run test/index.test.ts test/models.test.ts",
-    "test:live": "vitest run test/telnyx.live.test.ts",
+    "test": "vitest run test/index.test.ts test/models.test.ts test/speech.test.ts",
+    "test:live": "vitest run test/telnyx.live.test.ts test/speech.live.test.ts",
     "prepack": "npm run build"
   },
   "peerDependencies": {

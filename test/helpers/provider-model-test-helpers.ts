@@ -33,11 +33,19 @@ export function registerSingleProviderPlugin(
   plugin: Pick<OpenClawPluginDefinition, "register">,
 ): ProviderPlugin {
   let registered: ProviderPlugin | undefined;
+  const noopCapabilityRegistration = () => undefined;
   plugin.register({
     registerProvider(provider: ProviderPlugin) {
       registered = provider;
     },
     registerModelCatalogProvider() {},
+    registerSpeechProvider() {},
+    registerRealtimeTranscriptionProvider() {},
+    registerMediaUnderstandingProvider: noopCapabilityRegistration,
+    registerImageGenerationProvider: noopCapabilityRegistration,
+    registerMusicGenerationProvider: noopCapabilityRegistration,
+    registerVideoGenerationProvider: noopCapabilityRegistration,
+    registerWebSearchProvider: noopCapabilityRegistration,
   } as unknown as OpenClawPluginApi);
   if (!registered) {
     throw new Error("provider registration missing");
